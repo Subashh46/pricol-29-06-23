@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+{% for machine in machine_list%}
+    <ul>
+        <p class="fs-6"><a href="{% url 'machine_detail' machine.pk%}" class="btn btn-link btn-lg" tabindex="-1" role="button" aria-disabled="true">
+            {{ machine.name }}</a> {{ machine.manufacture_year }}</p>
+    </ul>
+{% endfor %}
+{% endblock %}

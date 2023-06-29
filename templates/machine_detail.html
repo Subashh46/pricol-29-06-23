@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<h2>{{ object.name }}</h2>
+{% for status in status %}
+    {% if status.machine == machine %}
+    <ul>
+    <p>{{status.time}}</p>
+    <p>WORKING - {{ status.is_working }}</p>
+    <p>{{ status.description }}</p>
+    <p>{% if status.document %}
+        {% if status.document_name %}
+        <a href="{{ status.document.url }}">{{ status.document_name }}</a>
+        {% else %}
+        <a href="{{ status.document.url }}">Unnamed</a>
+        {% endif %}
+    {% endif %}</p>
+    <a href="{% url 'update_status' status.pk%}" class="btn btn-secondary" tabindex="-1" role="button" aria-disabled="true">
+        Update</a>
+    <a href="{% url 'delete_status' status.pk%}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">
+        Delete</a>
+    <hr>
+    {% endif %}
+</ul>
+{% endfor %}
+{% endblock %}
